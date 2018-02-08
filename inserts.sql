@@ -1,25 +1,33 @@
--- FINAL PROJECT
--- TEAM MAKESMART, MACO DOUSSIAS, JAKE MCGHEE, PAVLOS PAPADONIKOLAKIS
--- DESCRIPTION:  SQL INSERT STATEMETS TO INSERT DATA FOR ANIMALS IN A ZOO
--- CST363 
---
---
---
+-- SPECIES ---------------------------------------------------------
 
-insert into animal(animal_name,animal_class,DOB,sex,endangered) values('keiko','mamal','2008-11-11','female',1);
-insert into animal(animal_name,animal_class,DOB,sex,endangered) values('sher','bird','2011-1-12','male',0);
+-- CATS 
+INSERT INTO species VALUES (null, 'Jaguar', 'Panthera onca', 0);
+INSERT INTO species VALUES (null, 'Lion', 'Panthera leo', 0);
+INSERT INTO species VALUES (null, 'Tiger', 'Panthera tigris', 1);
+INSERT INTO species VALUES (null, 'Cheetah', 'Acinonyx jubatus', 0);
+INSERT INTO species VALUES (null, 'Amur Leopard', 'Panthera pardus orientalis', 1);
+INSERT INTO species VALUES (null, 'Ocelot', 'Leopardus pardalis', 0);
+INSERT INTO species VALUES (null, 'Caracal', 'Caracal caracal', 0);
 
-insert into species(sience_name,animal_id) values('Eastern-Gorilla',1000);
-insert into species(sience_name,animal_id) values('Columbidae',1001);
+-- PRIMATES
+INSERT INTO species VALUES (null, 'Gorilla', 'Gorilla gorilla', 1);
+INSERT INTO species VALUES (null, 'Orangutan', 'Pongo', 1);
+INSERT INTO species VALUES (null, 'Lemur', 'Lemuroidea', 1);
+INSERT INTO species VALUES (null, 'Capuchin', 'Cebinae', 0);
+INSERT INTO species VALUES (null, 'Spider Monkey', 'Ateles', 1);
+INSERT INTO species VALUES (null, 'Squirrel Monkey', 'Saimiri', 0);
+INSERT INTO species VALUES (null, 'Pygmy Marmoset', 'Cebuella pygmaea', 0);
 
-insert into animal_diet(diet_type,animal_id) values('Herbivores',1000);
-insert into animal_diet(diet_type,animal_id) values('Frugivores',1001);
+-- BIRDS
+INSERT INTO species VALUES (null, 'Bald Eagle', 'Haliaeetus leucocephalus', 0);
+INSERT INTO species VALUES (null, 'Red-tailed Hawk', 'Buteo jamaicensis', 0);
 
-insert into exhibit(exhibit_name) value('Red Rocks');
-insert into exhibit(exhibit_name) value('Chinese Water Dragon');
+-- OTHER
+INSERT INTO species VALUES (null, 'Rhinoceros', 'Rhinocerotidae', 0);
+INSERT INTO species VALUES (null, 'African Elephant', 'Loxodonta africana', 0);
 
-insert into habitat(habitat_name,habitat_climate,avg_temp,animal_id) values('African Jungle','tropical','77',1001);
-insert into habitat(habitat_name,habitat_climate,avg_temp,animal_id) values('African Safari','dry','70',1000);
 
-insert into species_live(species_id,exhibit_id) values(2000,6001);
-insert into species_live(species_id,exhibit_id) values(2001,6001);
+-- EXHIBIT ---------------------------------------------------------
+
+INSERT INTO species VALUES (null, 'Cat Canyon');
+INSERT INTO species VALUES (null, 'Primate Paridise');   

@@ -39,6 +39,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `zoo`.`species` (
   `species_id` INT NOT NULL AUTO_INCREMENT,
+  `common_name` VARCHAR(64) NOT NULL,
   `sience_name` VARCHAR(64) NOT NULL,
   `endangered` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`species_id`))
