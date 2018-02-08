@@ -1,5 +1,11 @@
+-- FINAL PROJECT
+-- TEAM MAKESMART, MACO DOUSSIAS, JAKE MCGHEE, PAVLOS PAPADONIKOLAKIS
+-- DESCRIPTION:  SQL SCHEMA & TABLE CREATION FOR A ZOO TO KEEP TRACK OF ANIMALS
+-- CST363 
+--
+--
+--
 -- SPECIES ---------------------------------------------------------
-
 -- CATS 
 INSERT INTO species VALUES (null, 'Jaguar', 'Panthera onca', 0);
 INSERT INTO species VALUES (null, 'Lion', 'Panthera leo', 0);
@@ -26,8 +32,20 @@ INSERT INTO species VALUES (null, 'Red-tailed Hawk', 'Buteo jamaicensis', 0);
 INSERT INTO species VALUES (null, 'Rhinoceros', 'Rhinocerotidae', 0);
 INSERT INTO species VALUES (null, 'African Elephant', 'Loxodonta africana', 0);
 
-
 -- EXHIBIT ---------------------------------------------------------
+INSERT INTO exhibit VALUES (null, 'Cat Canyon');
+INSERT INTO exhibit VALUES (null, 'Primate Paridise');   
 
-INSERT INTO species VALUES (null, 'Cat Canyon');
-INSERT INTO species VALUES (null, 'Primate Paridise');   
+-- TODO Inserts not working in natural_habitat
+-- TODO SCHEMA FILE NEEDS FIXED, NATURAL HABITAT TABLE NEEDS TO HAVE AN AUTO-INCREMENTED PRIMARY KEY ID
+-- NATURAL_HABITAT ---------------------------------------------------------
+-- INSERT INTO natural_habitat VALUES (default, 'Arctic / Antarctic');
+-- INSERT INTO natural_habitat VALUES (null,'Desert');	
+-- INSERT INTO natural_habitat VALUES (null,'Tundra');	
+-- INSERT INTO natural_habitat VALUES (null,'Taiga (Coniferous Forest)');	
+-- INSERT INTO natural_habitat VALUES (null,'Deciduous Forest');	
+-- INSERT INTO natural_habitat VALUES (null,'Grassland');	
+-- INSERT INTO natural_habitat VALUES (null,'Tropical'); 
+-- INSERT INTO natural_habitat VALUES (null,'Swamp');	
+-- INSERT INTO natural_habitat VALUES (null,'Aquatic (Ocean)');
+-- INSERT INTO natural_habitat VALUES (null,'Aquatic (Sea)');
