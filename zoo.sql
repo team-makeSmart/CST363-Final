@@ -30,7 +30,6 @@ CREATE TABLE IF NOT EXISTS `zoo`.`exhibit` (
   `exhibit_name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`exhibit_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6002
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -44,7 +43,6 @@ CREATE TABLE IF NOT EXISTS `zoo`.`species` (
   `endangered` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`species_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2002
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -52,7 +50,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `zoo`.`animal`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `zoo`.`animal` (
-  `animal_id` INT UNSIGNED NOT NULL,
+  `animal_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `animal_name` VARCHAR(45) NULL,
   `dob` DATE NULL,
   `sex` VARCHAR(1) NULL DEFAULT NULL,
@@ -80,7 +78,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `zoo`.`natural_habitat`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `zoo`.`natural_habitat` (
-  `natural_habitat_id` INT NOT NULL,
+  `natural_habitat_id` INT NOT NULL AUTO_INCREMENT,
   `habitat_name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`natural_habitat_id`))
 ENGINE = InnoDB;
