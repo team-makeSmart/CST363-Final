@@ -13,6 +13,8 @@ SELECT * FROM species_has_natural_habitat;
 
 -- TODO all the select statements can be converted to views for the website
 -- TODO Not sure how to make a standard way to do INSERTS for the website?  Would VIEWS be a good choice?
+
+
 -- SELECT to see all the species and their corresponding habitats 
 SELECT s.common_name, s.science_name, s.endangered,nh.habitat_name
 FROM species s
