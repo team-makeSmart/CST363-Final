@@ -1,59 +1,98 @@
 -- FINAL PROJECT
 -- TEAM MAKESMART, MACO DOUSSIAS, JAKE MCGHEE, PAVLOS PAPADONIKOLAKIS
--- DESCRIPTION:  SQL SCHEMA & TABLE CREATION FOR A ZOO TO KEEP TRACK OF ANIMALS
+-- DESCRIPTION:  SQL SCHEMA INSERT STATEMENTS FOR ZOO DB
 -- CST363 
---
---
---
--- TODO Need more animals (~10 more)
--- TODO Need to fill out species_has_habitat table
 
--- SPECIES ---------------------------------------------------------
+-- -------------------------------------------------
+-- INSERT natural habitats
+INSERT INTO natural_habitat VALUES (1,'Arctic / Antarctic');
+INSERT INTO natural_habitat VALUES (2,'Desert');
+INSERT INTO natural_habitat VALUES (3,'Tundra');
+INSERT INTO natural_habitat VALUES (4,'Taiga (Coniferous Forest)');
+INSERT INTO natural_habitat VALUES (5,'Deciduous Forest');
+INSERT INTO natural_habitat VALUES (6,'Grassland');
+INSERT INTO natural_habitat VALUES (7,'Tropical');
+INSERT INTO natural_habitat VALUES (8,'Swamp');
+INSERT INTO natural_habitat VALUES (9,'Aquatic (Ocean)');
+INSERT INTO natural_habitat VALUES (10,'Aquatic (Fresh)');
 
-INSERT INTO species VALUES (null, 'Jaguar', 'Panthera onca', 0);
-INSERT INTO species VALUES (null, 'Lion', 'Panthera leo', 0);
-INSERT INTO species VALUES (null, 'Tiger', 'Panthera tigris', 1);
-INSERT INTO species VALUES (null, 'Cheetah', 'Acinonyx jubatus', 0);
-INSERT INTO species VALUES (null, 'Gorilla', 'Gorilla gorilla', 1);
-INSERT INTO species VALUES (null, 'Orangutan', 'Pongo', 1);
-INSERT INTO species VALUES (null, 'Lemur', 'Lemuroidea', 1);
-INSERT INTO species VALUES (null, 'Capuchin', 'Cebinae', 0);
-INSERT INTO species VALUES (null, 'Rhinoceros', 'Rhinocerotidae', 0);
-INSERT INTO species VALUES (null, 'African Elephant', 'Loxodonta africana', 0);
+-- -------------------------------------------------
+-- INSERT species
+-- CATS
+INSERT INTO species VALUES (1, 'Jaguar', 'Panthera onca', 0);
+	INSERT INTO species_has_natural_habitat VALUES (1,7);
 
+INSERT INTO species VALUES (2, 'Lion', 'Panthera leo', 0);
+	INSERT INTO species_has_natural_habitat VALUES (2,6);
+        
+INSERT INTO species VALUES (3, 'Tiger', 'Panthera tigris', 1);
+	INSERT INTO species_has_natural_habitat VALUES (3,7);
+        
+INSERT INTO species VALUES (4, 'Cheetah', 'Acinonyx jubatus', 0);
+	INSERT INTO species_has_natural_habitat VALUES (4,6);
 
--- EXHIBIT ---------------------------------------------------------
+-- PRIMATES
+INSERT INTO species VALUES (5, 'Gorilla', 'Gorilla gorilla', 1);
+	INSERT INTO species_has_natural_habitat VALUES (5,7);
+            
+INSERT INTO species VALUES (6, 'Orangutan', 'Pongo', 1);
+	INSERT INTO species_has_natural_habitat VALUES (6,7);
 
+INSERT INTO species VALUES (7, 'Chimpanzee', 'Pan troglodytes', 1);
+	INSERT INTO species_has_natural_habitat VALUES (7,7);    
+            
+-- BIRDS
+INSERT INTO species VALUES (8, 'Bald Eagle', 'Haliaeetus leucocephalus', 0);
+	INSERT INTO species_has_natural_habitat VALUES (8,3);
+	INSERT INTO species_has_natural_habitat VALUES (8,4);
+	INSERT INTO species_has_natural_habitat VALUES (8,5);
+            
+INSERT INTO species VALUES (9, 'Red-tailed Hawk', 'Buteo jamaicensis', 0);
+	INSERT INTO species_has_natural_habitat VALUES (9,4);
+	INSERT INTO species_has_natural_habitat VALUES (9,5);
+            
+-- OTHER species
+INSERT INTO species VALUES (10, 'Rhinoceros', 'Rhinocerotidae', 0);
+	INSERT INTO species_has_natural_habitat VALUES (10,6);
+	INSERT INTO species_has_natural_habitat VALUES (10,7);
+            
+INSERT INTO species VALUES (11, 'African Elephant', 'Loxodonta africana', 0);
+	INSERT INTO species_has_natural_habitat VALUES (11,6);
+	INSERT INTO species_has_natural_habitat VALUES (11,7);            
+            
+INSERT INTO species VALUES (12, 'American Bullfrog','Lithobates catesbeianus',0);
+	INSERT INTO species_has_natural_habitat VALUES (12,5);
+	INSERT INTO species_has_natural_habitat VALUES (12,8);	
+	INSERT INTO species_has_natural_habitat VALUES (12,10);	
+    
+INSERT INTO species VALUES (13, 'Rattlesnake','Crotalus cerastes',0);
+	INSERT INTO species_has_natural_habitat VALUES (13,2);
+	INSERT INTO species_has_natural_habitat VALUES (13,6);	
 
-INSERT INTO exhibit VALUES (null, 'Forbidden Forest');
-INSERT INTO exhibit VALUES (null, 'Joyous Jungle'); 
-INSERT INTO exhibit VALUES (null, 'Cataclysmic Canyon');   
-INSERT INTO exhibit VALUES (null, 'Panoramic Plains');
-INSERT INTO exhibit VALUES (null, 'Wonderous Wetlands');
+-- -------------------------------------------------
+-- EXHIBITS ---------------------------------------
+INSERT INTO exhibit VALUES 
+(1, 'Cat Canyon'), 
+(2, 'Primate Paradise'), 
+(3, 'African Kingdom'), -- TODO ANIMALS NEED ADDED FOR THIS EXHIBIT 
+(4, 'Aviary Cliffs'), -- TODO ANIMALS NEED ADDED FOR THIS EXHIBIT 
+(5, 'Tiger Den'),       
+(6, 'Arctic Exhibit'); -- Leave this exhibit empty, to have one empty exhibit in the Zoo. 
 
--- ANIMALS ---------------------------------------------------------
+-- -------------------------------------------------
+-- ANIMALS
+INSERT INTO animal VALUES (null, 'Tony','2008-7-04','F',5,3);
+INSERT INTO animal VALUES (null, 'Shere Khan','2010-7-04','M',5,3);
 
-INSERT INTO animal VALUES (null, 'Aurora', '2016-10-16', 'F', 1, 1);
-INSERT INTO animal VALUES (null, 'Aemilia', '2008-08-23', 'F', 1, 1);
-INSERT INTO animal VALUES (null, 'Nora', '2013-08-11', 'F', 3, 2);
-INSERT INTO animal VALUES (null, 'Orion', '2012-12-23', 'M', 3, 2);
-INSERT INTO animal VALUES (null, 'Ivona', '2009-01-24', 'F', 5, 3);
-INSERT INTO animal VALUES (null, 'Sankar', '2009-12-03', 'M', 5, 3);
-INSERT INTO animal VALUES (null, 'Amala', '2007-03-13', 'F', 4, 4);
-INSERT INTO animal VALUES (null, 'Raffael', '2006-06-16', 'M', 4, 4);
-INSERT INTO animal VALUES (null, 'Marianne', '1997-01-05', 'F', 2, 5);
-INSERT INTO animal VALUES (null, 'Mahir', '1999-12-05', 'M', 2, 5);
+INSERT INTO animal VALUES (null,'Roadsta','2013-8-8','F',1,1);
+INSERT INTO animal VALUES (null,'Simba','2015-10-11','M',1,2);
+INSERT INTO animal VALUES (null,'Tigger','2013-2-7','M',1,4);
 
+INSERT INTO animal VALUES (null,'Diane','1999-10-12','F',2,5);
+INSERT INTO animal VALUES (null,'Birute','1995-2-1','F',2,6);
+INSERT INTO animal VALUES (null,'Jane','2017-1-1','F',2,7);
 
--- NATURAL_HABITAT ---------------------------------------------------------
+-- TODO could add a few extra animals to fill in African Kingdom and Aviary Cliffs exhibit
+-- TODO Thinking to leave Arctic exhibit as an empty exhibit to show off left joins.  
+-- Also, thinking not to have animals for all species 
 
-INSERT INTO natural_habitat VALUES (default, 'Arctic / Antarctic');
-INSERT INTO natural_habitat VALUES (null,'Desert');	
-INSERT INTO natural_habitat VALUES (null,'Tundra');	
-INSERT INTO natural_habitat VALUES (null,'Taiga (Coniferous Forest)');	
-INSERT INTO natural_habitat VALUES (null,'Deciduous Forest');	
-INSERT INTO natural_habitat VALUES (null,'Grassland');	
-INSERT INTO natural_habitat VALUES (null,'Tropical'); 
-INSERT INTO natural_habitat VALUES (null,'Swamp');	
-INSERT INTO natural_habitat VALUES (null,'Aquatic (Ocean)');
-INSERT INTO natural_habitat VALUES (null,'Aquatic (Sea)');
