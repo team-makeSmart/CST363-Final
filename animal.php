@@ -7,7 +7,7 @@
 <?php 
 $host = "localhost";
 $user = "root";
-$password = "KarlMarx123";
+$password = "temp";
 $database = "zoo";
 $port = 3306;
 // create connection
