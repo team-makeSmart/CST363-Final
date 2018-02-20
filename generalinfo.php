@@ -1,4 +1,9 @@
-<!-- INDEX FILE-->
+<!-- team makesmart -->
+<!--CST363 Final project -->
+<!--Jake McGhee, Pavlos Papadonikolakis, Mac Doussias
+<!-- generalinfo.php -->
+<!-- This page just displays some general information on the zoo database -->
+
 <?php 
 $host = "localhost";
 $user = "root";
@@ -10,18 +15,19 @@ $conn = new mysqli($host, $user, $password, $database, $port);
 if ($conn->connect_errno) {
     exit ("Failed to connect: (" . $conn->connect_errno . ") " . $conn->connect_error );
 }
-// read the names of animals  TODO We could change this SELECT statement to be a simple VIEW.  Make sure to keep same order
-// TODO in the view that we make for the SELECT statement, we can have the boolean endangered return 'True' or 'False'
+//This select statement is to retrieve all the animal records and corrolating info from the joined tables
 $animal_sql = "SELECT a.animal_id, a.animal_name, a.dob, a.sex, e.exhibit_name, s.common_name, s.science_name, s.endangered
 FROM animal a
 JOIN exhibit e ON e.exhibit_id = a.exhibit_id
 JOIN species s ON s.species_id = a.species_id
 ORDER BY a.animal_id"; 
 
+//get some counts to display in opening statement at top of page
 $exhibit_count_sql = "SELECT count(*) FROM exhibit";
 $species_count_sql = "SELECT count(*) FROM species";
 $animal_count_sql = "SELECT count(*) FROM animal";
 
+//Get all the exhibits to display the data
 $exhibit1_sql = "SELECT animal_name, sex, dob, common_name, science_name
 FROM animal a 
 JOIN species s ON a.species_id = s.species_id
@@ -46,9 +52,6 @@ $exhibit6_sql = "SELECT animal_name, sex, dob, common_name, science_name
 FROM animal a 
 JOIN species s ON a.species_id = s.species_id
 WHERE exhibit_id = 6";
-
-
-
 
 $exhibit_count = $conn->query($exhibit_count_sql);
 $species_count = $conn->query($species_count_sql);
@@ -89,16 +92,16 @@ if (!$animal or !exhibit_count or !species_count or !animal_count) 	{
  
  <p></p> 
  <?php 
-	echo "The Zoo currently has ";
+	echo "The Zoo currently has <b>";
  
 	while ($row = $exhibit_count->fetch_assoc() ) {
-		echo $row['count(*)']." exhibits featuring ";
+		echo $row['count(*)']."</b> exhibits featuring <b>";
 	}
 	while ($row = $species_count->fetch_assoc() ) {
-		echo $row['count(*)']." species and ";
+		echo $row['count(*)']."</b> species and <b>";
 	}
 	while ($row = $animal_count->fetch_assoc() ) {
-		echo $row['count(*)']." different animals.";
+		echo $row['count(*)']."</b> different animals.";
 	}
   ?>
   <p></p>
@@ -120,7 +123,10 @@ if (!$animal or !exhibit_count or !species_count or !animal_count) 	{
 	
 	?>
   </table>
-  
+<!-- ----------------------------------- -->	  
+<!-- For the rest of the page, it will fetch the data for each indivdual -->
+<!-- exhibit and display records of animals contained within -->
+<!-- ----------------------------------- -->
   <p>Cat Canyon: </p>
   <table border = "1">
   <?php
@@ -193,6 +199,3 @@ if (!$animal or !exhibit_count or !species_count or !animal_count) 	{
 	  $conn->close();
    ?>
 </html>    
-
-
-
