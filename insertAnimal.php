@@ -3,39 +3,41 @@
 <!-- CLASS CST363 -- >
 <!-- NOTE TO PROFESSOR:  database used is for a zoo-->
 
-<!-- INDEX FILE-->
+<!-- TODO need to guard against injection attacks -->
+<!-- TODO need to display error message when user forgets to enter a date in the form from the animal.php page-->
+<!-- insertAnimal.php FILE-->
 <?php 
+// retrieve user data from form in animal.php   
+$animal_name= $_POST["animal_name"];
+$dob = $_POST["dob"];
+$sex = $_POST["sex"];
+$exhibit_id = $_POST["exhibit_id"];
+$species_id = $_POST["species_id"]; 
+
 $host = "localhost";
 $user = "root";
 $password = "temp";
 $database = "zoo";
 $port = 3306;
-// create connection
+// create connection to database
 $conn = new mysqli($host, $user, $password, $database, $port);
 if ($conn->connect_errno) {
     exit ("Failed to connect: (" . $conn->connect_errno . ") " . $conn->connect_error );
 }
-// read the names of animals  TODO We could change this SELECT statement to be a simple VIEW.  Make sure to keep same order
-// TODO in the view that we make for the SELECT statement, we can have the boolean endangered return 'True' or 'False'
-$sql = "SELECT a.animal_id, a.animal_name, a.dob, 
-a.sex, e.exhibit_name, s.common_name, 
-s.science_name, s.endangered
- 
-FROM animal a
- 
-JOIN exhibit e ON e.exhibit_id = a.exhibit_id
-JOIN species s ON s.species_id = a.species_id
-ORDER BY s.species_id, a.animal_id"; 
-$res = $conn->query($sql);
-if (!$res) 	{
-	exit ("Select failed: (" . $conn->errno . ") " . $conn->error . " sql=" . $sql);
+
+// store order 
+$sqli = "INSERT INTO Animal VALUES( null, ?, ?, ?, ?, ?)"; //NEW added a question mark
+$stmti = $conn->prepare($sqli);
+$stmti->bind_param("sssii", $animal_name, $dob,  $sex, $exhibit_id, $species_id); //NEW added the discount_pct
+if (!$stmti->execute()) {
+    exit ("Error.  Unable to place order." . $conn->error);
 }
+// commit transaction and close connection
+$conn->commit();
+$conn->close();
+
 ?>
 
-
-
-
-<!DOCTYPE html>
 <html>
   <body>
 
@@ -46,49 +48,12 @@ if (!$res) 	{
 	}
   </style>
 
-  <h1 style="text-align:center;font-family:tahoma;border:10px outset forestgreen; color:yellow"> ZOO DATABASE </h1>
-     
-  <p>LIST OF ANIMALS:</p>
+  <h1 style="text-align:center;font-family:tahoma;border:10px outset forestgreen; color:yellow"> 
+  RECORD HAS BEEN INPUT CORRECTLY!</h1>
 
-  <!-- fetch each row and display using HTML table -->
-  <table border = "1">
-    	<?php 
-	  //Below echo statement is to make the header for the table that displays all animals
-	  echo "<tr><th>ANIMAL ID</th><th>ANIMAL NAME</th><th>DOB</th><th>SEX</th><th>EXHIBIT NAME</th>
-	  <th>COMMON NAME</th><th>SCIENCE NAME</th><th>ENDANGERED STATUS</th></tr>";
-	  //Below while loop converts all the records to html text
-	  while ( $row = $res->fetch_assoc() ) {
-    	    echo "<tr><td> ".$row['animal_id']."</td> <td>".$row['animal_name']."</td> <td>" . $row['dob']. "</td>  
-	    <td> ".$row['sex']."</td> <td>".$row['exhibit_name']."</td> <td>" . $row['common_name']. "</td> 
-	    <td>" . $row['science_name']. "</td><td>" . $row['endangered']. "</td></tr>"; 
-	  }
-	  // commit transation and close connection
-	  $conn->commit();
-	  $conn->close();
-	?>
-  </table>
+    <!-- BUTTON TO RETURN TO animal.php page -->  
+	<form action="animal.php">
+    	<input type="submit" value="PRESS TO RETURN" />
+	</form>
 
-    <hr> <!-- HR tag just represents a 'thematic break', or a horizon line.  Does not need a closing tag -->
-
-    <form method="post" action="purchase.php"> 
-      <b style="color:yellow; font-size:24;">ENTER AN ANIMAL:</b>
-      <br>
-      <table>
-        <tr><td>Item number</td><td> <!-- TODO make the PHP connection here-->
-        <input type="number" name="id"/></td></tr>
-        <tr><td>Quantity</td><td>
-        <input type="number" name="quantity"/></td></tr>
-        <tr><td>Name</td><td>
-        <input type="text" name="name"/></td></tr>
-        <tr><td>Code</td><td> 						
-        <input type="text" name="code"/></td></tr> 	
-      </table>
-      <input type="submit" value="ENTER ANIMAL"/> 
-      </table>
-    </form>
-    
-<br><br><br><br>
-
-<form action="http:www.google.com">
-    	<input type="submit" value="Just a link button" />
-</form>
+  </html>
