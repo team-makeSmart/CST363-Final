@@ -3,6 +3,12 @@
 -- DESCRIPTION:  SQL SCHEMA INSERT STATEMENTS FOR ZOO DB
 -- CST363 
 
+-- NOTE TO PROFESSOR --
+-- We intentionally left some EXHIBITS without animals.  
+--      For instance, the Zoo might have a new exhibit that hasn't been populated yet.
+-- We also left some SPECIES without connections to the ANIMALS table
+--     For instance, a Zoo might be expecting species, or want to store info on a species, 
+--     but the may not necessarily have them in the Zoo.
 -- -------------------------------------------------
 -- INSERT natural habitats
 INSERT INTO natural_habitat VALUES (1,'Arctic / Antarctic');
@@ -70,7 +76,7 @@ INSERT INTO species VALUES (13, 'Rattlesnake','Crotalus cerastes',0);
 	INSERT INTO species_has_natural_habitat VALUES (13,6);	
 
 -- -------------------------------------------------
--- EXHIBITS ---------------------------------------
+-- INSERT EXHIBITS ---------------------------------------
 INSERT INTO exhibit VALUES 
 (1, 'Cat Canyon'), 
 (2, 'Primate Paradise'), 
@@ -81,18 +87,15 @@ INSERT INTO exhibit VALUES
 
 -- -------------------------------------------------
 -- ANIMALS
+
 INSERT INTO animal VALUES (null, 'Tony','2008-7-04','F',5,3);
 INSERT INTO animal VALUES (null, 'Shere Khan','2010-7-04','M',5,3);
-
 INSERT INTO animal VALUES (null,'Roadsta','2013-8-8','F',1,1);
 INSERT INTO animal VALUES (null,'Simba','2015-10-11','M',1,2);
 INSERT INTO animal VALUES (null,'Tigger','2013-2-7','M',1,4);
-
 INSERT INTO animal VALUES (null,'Diane','1999-10-12','F',2,5);
 INSERT INTO animal VALUES (null,'Birute','1995-2-1','F',2,6);
-INSERT INTO animal VALUES (null,'Jane','2017-1-1','F',2,7);
-
--- TODO could add a few extra animals to fill in African Kingdom and Aviary Cliffs exhibit
--- TODO Thinking to leave Arctic exhibit as an empty exhibit to show off left joins.  
--- Also, thinking not to have animals for all species 
+INSERT INTO animal VALUES (null,'Jane','2017-1-1','F',2,7);			
+INSERT INTO animal VALUES (null,'null','1995-2-1','F',2,6);
+INSERT INTO animal VALUES (null,'null','2017-1-1','F',2,7);
 
