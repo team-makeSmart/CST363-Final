@@ -3,8 +3,28 @@
 -- DESCRIPTION:  SQL STATEMENTS FOR SELECTS AND VIEWS ON ZOO DATABASE
 -- CST363 
 --
---
--- SELECT simle statements to see all the records in each table, individually.
+-- --------------------
+
+-- CREATE USERS -------------------------------------------------------------
+-- --------------------------------------------------------------------------
+-- Create the zooUser explicitly
+CREATE USER zooUser@localhost IDENTIFIED BY 'pass';
+-- Grant the zooUser only the ability to view records, and insert new records
+GRANT SELECT, INSERT
+ON zoo.* TO zooUser@localhost;
+
+
+-- Create the zooAdmin explicitly 
+CREATE USER zooAdmin@localhost IDENTIFIED BY 'pass123';
+-- Grant the zooAdmin ALL abilities for the records
+-- Grant the zooAdmin ability to grant their permissions to other users  
+GRANT ALL
+ON zoo.* TO zooAdmin@localhost
+WITH GRANT OPTION;
+
+-- --------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
+-- SELECT simple statements to see all the records in each table, individually.
 SELECT * FROM animal;
 SELECT * FROM exhibit;
 SELECT * FROM species;
