@@ -22,7 +22,7 @@ GRANT ALL
 ON zoo.* TO zooAdmin@localhost
 WITH GRANT OPTION;
 
--- --------------------------------------------------------------------------
+-- SELECTS--------------------------------------------------------------------------
 -- --------------------------------------------------------------------------
 -- SELECT simple statements to see all the records in each table, individually.
 SELECT * FROM animal;
@@ -30,10 +30,6 @@ SELECT * FROM exhibit;
 SELECT * FROM species;
 SELECT * FROM natural_habitat;
 SELECT * FROM species_has_natural_habitat;
-
--- TODO all the select statements can be converted to views for the website
--- TODO Not sure how to make a standard way to do INSERTS for the website?  Would VIEWS be a good choice?
-
 
 -- SELECT to see general animal information
 SELECT a.animal_id, a.animal_name, a.dob, a.sex, e.exhibit_name, s.common_name, s.science_name, s.endangered
@@ -128,7 +124,6 @@ FROM
 WHERE
     sp.common_name REGEXP 'America';
     
-    
 --  ------------------------------------------------------------------------------------  
 -- Count if there are more female than male animals in the zoo
 
@@ -140,6 +135,24 @@ select distinct case when (SELECT
     from animal a where a.sex = 'M') then 'True'
 ELSE 'False' END AS 'Female animals > Male animals'
   FROM animal;
+  
+
+-- VIEWS--------------------------------------------------------------------------
+-- --------------------------------------------------------------------------  
+
+-- This View will allow a user to more easily many different attributes of an animal
+-- It can be used to display all the animals in the Zoo with information about them from several different tables
+-- It may be best to use something like this for the web views
+CREATE OR REPLACE VIEW all_animal_info_view
+AS
+SELECT a.animal_id, a.animal_name, a.dob, 
+a.sex, e.exhibit_name, s.common_name, 
+s.science_name, IF(s.endangered,'True','False') As Endangered
+FROM animal a
+JOIN exhibit e ON e.exhibit_id = a.exhibit_id
+JOIN species s ON s.species_id = a.species_id
+ORDER BY a.animal_id;  
+  
  
 -- VIEWS to show show the names and species of all the animals in a particular exhibit
 CREATE VIEW exhibit1_view AS
