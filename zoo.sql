@@ -51,7 +51,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `zoo`.`animal` (
   `animal_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `animal_name` VARCHAR(45) NULL,
+  `animal_name` VARCHAR(45) NULL DEFAULT NULL,
   `dob` DATE NULL,
   `sex` VARCHAR(1) NULL DEFAULT NULL,
   `exhibit_id` INT(11) NOT NULL,
