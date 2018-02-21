@@ -4,6 +4,28 @@
 <!-- NOTE TO PROFESSOR:  database used is for a zoo-->
 
 <!-- INDEX FILE-->
+
+<!--
+************************
+DIAGRAM OF ZOO WEBSITE PORTAL
+************************
+DESCRIPTION:  This web portal allows the user to insert a new animal record, view records on animals, and delete a record.
+*******************
+INDEX.PHP (LINKS PAGE THAT LINKS TO ANIMAL.PHP AND TO GENERALINFO.PHP)
+GENERALINFO.PHP (SHOWS GENERAL INFO ON THE ZOO, CONNECTING TO DB USING .php)
+ANIMAL.PHP 	(HAS ONE FORM TO DELETE ANIMALS AND ONE FORM TO INSERT ANIMALS INTO DB)
+INSERTANIMAL.PHP(Receives info from animal.php form and then uploads it to DB)
+DELETEANIMAL.PHP(Receives info from animal.php form and then deletes record in DB)
+************************
+		       <index.php>
+		  	   |	
+<generalInfo.php>________________________<Animal.php>
+			    		       |	
+		<deleteAnimal.php>____________________<insertAnimal.php>
+-->
+
+
+
 <!DOCTYPE html>
 <html>
   <body>
