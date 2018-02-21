@@ -4,7 +4,9 @@
 -- CST363 
 --
 --
---
+-- Below Schema that is created is meant for a zoo to keep track of its animals
+-- It keeps track of basic information that is pertinent to the zookeeper's job. 
+-- It may also be used to show 
 
 -- MySQL Workbench Forward Engineering
 
