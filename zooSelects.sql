@@ -35,6 +35,13 @@ SELECT * FROM species_has_natural_habitat;
 -- TODO Not sure how to make a standard way to do INSERTS for the website?  Would VIEWS be a good choice?
 
 
+-- SELECT to see general animal information
+SELECT a.animal_id, a.animal_name, a.dob, a.sex, e.exhibit_name, s.common_name, s.science_name, s.endangered
+FROM animal a
+JOIN exhibit e ON e.exhibit_id = a.exhibit_id
+JOIN species s ON s.species_id = a.species_id
+ORDER BY a.animal_id;
+
 -- SELECT to see all the species and their corresponding habitats 
 SELECT s.common_name, s.science_name, s.endangered,nh.habitat_name
 FROM species s
@@ -44,12 +51,126 @@ JOIN natural_habitat nh
   ON sn.natural_habitat_id = nh.natural_habitat_id
 ORDER BY s.common_name, science_name;  
   
--- TODO SELECT statement to show all the habitats and a COUNT of how many species are from them
+-- SELECT statement to show all the habitats and a COUNT of how many species are from them
 
--- TODO SELECT statement to show every animal, what species they are, 
-	--  what exhibit they live in, and a count of how many habitats they are from.
+SELECT 
+    COUNT(s.species_id) AS 'Number of animals', n.habitat_name
+FROM
+    species s
+        JOIN
+    species_has_natural_habitat ss ON s.species_id = ss.species_id
+        JOIN
+    natural_habitat n ON n.natural_habitat_id = ss.natural_habitat_id
+GROUP BY 2; 
+  
+--  ------------------------------------------------------------------------------------
+--  ------------------------------------------------------------------------------------  
+-- SELECT animal names and their ages that live in 'Primate paradise'
+-- and their natural habitat is 'Tropical'
+
+SELECT 
+    a.animal_name AS animal,
+    YEAR(CURRENT_DATE()) - YEAR(a.dob) AS 'Age',
+    s.science_name
+FROM
+    animal a
+        JOIN
+    species_has_natural_habitat shn ON a.species_id = shn.species_id
+        JOIN
+    natural_habitat nh ON nh.natural_habitat_id = shn.natural_habitat_id
+        JOIN
+    exhibit e ON e.exhibit_id = a.exhibit_id
+        JOIN
+    species s ON s.species_id = a.species_id
+WHERE
+    nh.habitat_name = 'Tropical'
+        AND e.exhibit_name = 'Primate paradise';
+
+--  ------------------------------------------------------------------------------------
+--  ------------------------------------------------------------------------------------
+-- Find all animals their common name and science name that are in danger of extiction, and what is  
+-- the name of their exhibit in the zoo
+
+SELECT 
+    distinct s.common_name,s.science_name, exhibit_name
+FROM
+
+    species s  join animal a on a.species_id = s.species_id
+    join exhibit e on e.exhibit_id = a.exhibit_id
+    where s.endangered = 1;
+     
+--  ------------------------------------------------------------------------------------
+--  ------------------------------------------------------------------------------------
+-- Find if there is currently a natural habitat that coresponds to no animal in the zoo
+
+SELECT 
+    habitat_name, sp.science_name
+FROM
+    natural_habitat nh
+        LEFT JOIN
+    species_has_natural_habitat s ON nh.natural_habitat_id = s.natural_habitat_id
+        LEFT JOIN
+    species sp ON sp.species_id = s.species_id
+ORDER BY 1;
+
+
+--  ------------------------------------------------------------------------------------  
+-- -- Find all species that their science name contains 'America' 
+-- 
+SELECT 
+    sp.common_name
+FROM
+    species sp
+WHERE
+    sp.common_name REGEXP 'America';
+    
+    
+--  ------------------------------------------------------------------------------------  
+-- Count if there are more female than male animals in the zoo
+
+select distinct case when (SELECT 
+    count(a.sex)
+    from animal a where a.sex = 'F')>
+(SELECT 
+    count(a.sex)
+    from animal a where a.sex = 'M') then 'True'
+ELSE 'False' END AS 'Female animals > Male animals'
+  FROM animal;
  
--- TODO SELECT statement to show the names and species of all the animals in a particular exhibit
+-- VIEWS to show show the names and species of all the animals in a particular exhibit
+CREATE VIEW exhibit1_view AS
+SELECT animal_name, sex, dob, common_name, science_name
+FROM animal a 
+JOIN species s ON a.species_id = s.species_id
+WHERE exhibit_id = 1;
 
--- TODO SELECT statement to show all the animals that are from a specific NATURAL_HABITAT
+CREATE VIEW exhibit2_view AS
+SELECT animal_name, sex, dob, common_name, science_name
+FROM animal a 
+JOIN species s ON a.species_id = s.species_id
+WHERE exhibit_id = 2;
+
+CREATE VIEW exhibit3_view AS
+SELECT animal_name, sex, dob, common_name, science_name
+FROM animal a 
+JOIN species s ON a.species_id = s.species_id
+WHERE exhibit_id = 3;
+
+CREATE VIEW exhibit4_view AS
+SELECT animal_name, sex, dob, common_name, science_name
+FROM animal a 
+JOIN species s ON a.species_id = s.species_id
+WHERE exhibit_id = 4;
+
+CREATE VIEW exhibit5_view AS
+SELECT animal_name, sex, dob, common_name, science_name
+FROM animal a 
+JOIN species s ON a.species_id = s.species_id
+WHERE exhibit_id = 5;
+
+CREATE VIEW exhibit6_view AS
+SELECT animal_name, sex, dob, common_name, science_name
+FROM animal a 
+JOIN species s ON a.species_id = s.species_id
+WHERE exhibit_id = 6;
 
