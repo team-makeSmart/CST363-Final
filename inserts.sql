@@ -96,6 +96,6 @@ INSERT INTO animal VALUES (null,'Tigger','2013-2-7','M',1,4);
 INSERT INTO animal VALUES (null,'Diane','1999-10-12','F',2,5);
 INSERT INTO animal VALUES (null,'Birute','1995-2-1','F',2,6);
 INSERT INTO animal VALUES (null,'Jane','2017-1-1','F',2,7);			
-INSERT INTO animal VALUES (null,'null','1995-2-1','F',2,6);
-INSERT INTO animal VALUES (null,'null','2017-1-1','F',2,7);
+INSERT INTO animal VALUES (null,null,'1995-2-1','F',2,6);
+INSERT INTO animal VALUES (null,null,'2017-1-1','F',2,7);
 
