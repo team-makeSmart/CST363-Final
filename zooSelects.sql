@@ -36,13 +36,17 @@ SELECT * FROM species_has_natural_habitat;
 
 
 -- SELECT to see all the species and their corresponding habitats 
-SELECT s.common_name, s.science_name, s.endangered,nh.habitat_name
+-- NOTE You will see duplicate records, but that is ok to denormalize here because the zookeeper wants to 
+-- go down alphabetically by species and see all the records for what habitats they live in. 
+SELECT s.common_name, s.science_name, IF(s.endangered,'True','False') as endangered,nh.habitat_name
 FROM species s
 JOIN species_has_natural_habitat sn
   ON sn.species_id = s.species_id
 JOIN natural_habitat nh 
   ON sn.natural_habitat_id = nh.natural_habitat_id
-ORDER BY s.common_name, science_name;  
+ORDER BY s.common_name, science_name;
+
+
   
 -- TODO SELECT statement to show all the habitats and a COUNT of how many species are from them
 
